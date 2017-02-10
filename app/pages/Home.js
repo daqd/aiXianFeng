@@ -34,6 +34,8 @@ export default class Home extends Component{
                   index={0}
                   autoplay={true}
                   horizontal={true}
+                  dot={<View style={{backgroundColor:'#FFF', width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 2,}} />}
+                  activeDot={<View style={{backgroundColor: '#FFF', width: 18, height: 6, borderRadius: 45, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 2,}} />}
           >
           {this.renderImg()}
           </Swiper>
@@ -44,6 +46,8 @@ export default class Home extends Component{
         {this.renderSpecilSalling()}
 
         {this.renderHomeBusiness()}
+
+        {this.categoryList()}
 
         <View style={{width:width,height:px2dp(50)}}></View>
         </ScrollView>
@@ -156,6 +160,10 @@ export default class Home extends Component{
         <View style={styles.businessSubCicons}>
           {this.renderBusinessList()}
         </View>
+
+        <View style={styles.hotSaleWrap}>
+          {this.renderHotSale()}
+        </View>
       </View>
     )
   }
@@ -180,7 +188,72 @@ export default class Home extends Component{
     return businessArr;
   }
 
+  renderHotSale(){
+    let hotSale = [];
+    for (let i = 0; i < ImagesSrc.hotSale.length; i++) {
+      hotSale.push(
+        <View style={styles.hotSaleItem} key={i}>
+            <Image
+              source = {ImagesSrc.hotSale[i]}
+              style={{width:width*0.4,height:65,resizeMode:'center',alignSelf:'center'}}
+            />
+        </View>
+      )
+    }
+    return hotSale;
+  }
 
+  categoryList(){
+    let categoryListArr = [];
+    for (var i = 0; i < ImagesSrc.categoryList.length; i++) {
+      categoryListArr.push(
+        <View style={styles.categoryList} key={i}>
+          <View style={styles.categoryCardTitle}>
+            <View style={styles.categoryCardName}>
+              <Text style={ImagesSrc.categoryList[i].headerStyle}>{ImagesSrc.categoryList[i].name}</Text>
+            </View>
+            <Text style={{color:'#505050',fontSize:13}}> 更多> </Text>
+          </View>
+          <View style={styles.categoryBanner}>
+            <Image
+              source={ImagesSrc.categoryList[i].bannerImg}
+              style={{width:width*0.96,height:80,alignSelf:'center',resizeMode:'center'}}
+            />
+          </View>
+          <View style={styles.categoryProductWrap}>
+            {this.renderCategoryProductList(ImagesSrc.categoryList[i].product)}
+          </View>
+        </View>
+      )
+    }
+    return categoryListArr;
+  }
+
+  renderCategoryProductList(product){
+    return product.map(item => this.renderCategoryProductItem(item))
+  }
+  renderCategoryProductItem(item){
+    return(
+      <View style={styles.CategoryProductItem} key={Math.random()}>
+        <Image
+          source={item.img}
+          style={{width:width*0.6/3,height:60,alignSelf:'center',resizeMode:'center'}}
+        />
+        <Text style={{marginLeft:5,marginRight:5,marginTop:5,marginBottom:5,fontSize:12}}>
+          {item.name.length<7?item.name:item.name.slice(0,8)+'...'}
+        </Text>
+        <Text style={{marginLeft:5,marginRight:5,marginBottom:5,fontSize:12,color:'#505050'}}>
+          {item.standard}
+        </Text>
+        <Text style={{marginLeft:5,marginRight:5,fontSize:12,color:'#f40'}}>
+          ￥{item.unitPrice}
+        </Text>
+        <View style={styles.addToCart}>
+          <Icon name={'ios-add-circle-outline'} size={px2dp(28)} color="#c9c9c9"/>
+        </View>
+      </View>
+    )
+  }
 
 }
 
@@ -296,5 +369,60 @@ const styles = StyleSheet.create({
   businessItemName:{
     justifyContent:'center',
     alignItems:'center',
+  },
+  hotSaleWrap:{
+    width:width,
+    height:140,
+    flexDirection:'row',
+    backgroundColor:'#FFF',
+    flexWrap:'wrap'
+  },
+  hotSaleItem:{
+    width:width*0.5,
+    height:70,
+    borderWidth:1,
+    borderColor:'#e0e0e0',
+  },
+
+  categoryList:{
+    width:width,
+    height:250,
+    backgroundColor:'#FFF',
+    marginTop:8,
+    marginBottom:8,
+  },
+  categoryCardTitle:{
+    width:width*0.96,
+    height:30,
+    marginLeft:width*0.02,
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-between',
+  },
+  categoryBanner:{
+    width:width*0.96,
+    marginLeft:width*0.02,
+    height:80,
+  },
+  categoryProductWrap:{
+    width:width*0.96,
+    height:120,
+    marginTop:10,
+    marginLeft:width*0.02,
+    flexDirection:'row',
+  },
+  CategoryProductItem:{
+    width:width*0.96/3,
+    height:120,
+    borderRightColor:'#e0e0e0',
+    borderRightWidth:1,
+    position:'relative',
+  },
+  addToCart:{
+    position:'absolute',
+    right:0,
+    bottom:0,
+    width:30,
+    height:30,
   }
 });
