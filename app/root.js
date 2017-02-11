@@ -7,7 +7,7 @@ import { View, Platform } from 'react-native'
 export default class rootApp extends Component {
   render() {
     return (
-      <View style={{backgroundColor: Platform.OS == "ios"?"#efefef":"#0398ff", flex: 1}}>
+      <View style={{backgroundColor: Platform.OS == "ios"?"#efefef":"#efefef", flex: 1}}>
         <Navigation/>
       </View>
     )

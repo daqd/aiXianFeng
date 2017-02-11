@@ -28,7 +28,11 @@ export default class Home extends Component{
     return(
       <View style={{position:'relative'}}>
         {this.renderHeader()}
-        <ScrollView contentContainerStyle={styles.contentContainer}>
+        <ScrollView
+          contentContainerStyle={styles.contentContainer}
+          onScroll={this._onScroll}
+          scrollEventThrottle={1}
+          >
           <Swiper height={200}
                   loop={true}
                   index={0}
@@ -53,6 +57,9 @@ export default class Home extends Component{
         </ScrollView>
       </View>
     )
+  }
+  _onScroll(obj){
+    console.log(obj.nativeEvent.contentOffset.y);
   }
   renderHeader(){
       return(
@@ -217,7 +224,7 @@ export default class Home extends Component{
           <View style={styles.categoryBanner}>
             <Image
               source={ImagesSrc.categoryList[i].bannerImg}
-              style={{width:width*0.96,height:80,alignSelf:'center',resizeMode:'center'}}
+              style={{width:width*0.96,height:80,alignSelf:'center',resizeMode:'cover'}}
             />
           </View>
           <View style={styles.categoryProductWrap}>
@@ -271,8 +278,8 @@ const styles = StyleSheet.create({
     justifyContent:'flex-start'
   },
   topLeftRightItem:{
-    width:headH-35,
-    height:headH-35,
+    width:30,
+    height:30,
     flexDirection:'column',
     justifyContent:'center',
     alignItems:'center',
@@ -284,7 +291,7 @@ const styles = StyleSheet.create({
     flex:1,
     backgroundColor:'#505050',
     borderRadius:45,
-    height:headH-35,
+    height:30,
     flexDirection:'row',
     alignItems:'center',
     justifyContent:'center',
@@ -386,7 +393,7 @@ const styles = StyleSheet.create({
 
   categoryList:{
     width:width,
-    height:250,
+    height:255,
     backgroundColor:'#FFF',
     marginTop:8,
     marginBottom:8,
@@ -406,14 +413,14 @@ const styles = StyleSheet.create({
   },
   categoryProductWrap:{
     width:width*0.96,
-    height:120,
+    height:125,
     marginTop:10,
     marginLeft:width*0.02,
     flexDirection:'row',
   },
   CategoryProductItem:{
     width:width*0.96/3,
-    height:120,
+    height:125,
     borderRightColor:'#e0e0e0',
     borderRightWidth:1,
     position:'relative',
