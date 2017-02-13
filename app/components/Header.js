@@ -23,7 +23,6 @@ export default class Header extends Component{
         </View>
         <View style={styles.topLeftRightItem}>
           <Icon name={'ios-search-outline'} size={px2dp(22)} color="#000000"/>
-          <Text style={{fontSize:10}}>搜索</Text>
         </View>
       </View>
     )
@@ -32,12 +31,14 @@ export default class Header extends Component{
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: "#ffd600",
+    backgroundColor: "#FFF",
     height: headH,
     paddingTop: px2dp(isIOS?30:10),
     flexDirection:'row',
     alignItems:'flex-start',
-    justifyContent:'flex-start'
+    justifyContent:'flex-start',
+    borderBottomColor:'#e0e0e0',
+    borderBottomWidth:1,
   },
   topLeftRightItem:{
     width:50,
