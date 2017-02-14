@@ -70,7 +70,7 @@ export default class Mall extends Component{
   _renderCategoryRow(rowData){
     return(
       <View style={styles.shopItem}>
-
+        {rowData}
       </View>
     )
   }
