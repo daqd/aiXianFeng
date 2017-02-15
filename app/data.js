@@ -36,5 +36,50 @@ export default{
     standard:'10g/盒',
     unitPrice:23,
     originalPrice:30
-  }]
+  }],
+  supermarket:{
+    hot:[{
+      name:'蜂觅·越南红心火龙果',
+      img:require('./images/supermarket/hot/huolongguo.jpg'),
+      standard:'350-450g/盒',
+      unitPrice:35,
+      originalPrice:50
+    },{
+      name:'爱鲜蜂打火机',
+      img:require('./images/supermarket/hot/dahuoji.jpg'),
+      standard:'1个',
+      unitPrice:2,
+      originalPrice:0
+    },{
+      name:'3M9001V专业防护口罩',
+      img:require('./images/supermarket/hot/kouzhao.jpg'),
+      standard:'3个/袋',
+      unitPrice:22.8,
+      originalPrice:30
+    },{
+      name:'爱鲜蜂·砂糖橘',
+      img:require('./images/supermarket/hot/shatangju.jpg'),
+      standard:'480-550g/盒',
+      unitPrice:2,
+      originalPrice:0
+    },{
+      name:'爱鲜蜂·高原红富士',
+      img:require('./images/supermarket/hot/apple.jpg'),
+      standard:'380-420g 2粒/盒',
+      unitPrice:17.6,
+      originalPrice:28
+    },{
+      name:'飘香鸭锁骨(微辣)',
+      img:require('./images/supermarket/hot/yabo.jpg'),
+      standard:'220g',
+      unitPrice:16,
+      originalPrice:20
+    },{
+      name:'味全活性乳酸菌饮料原味',
+      img:require('./images/supermarket/hot/weiquan.jpg'),
+      standard:'435ml',
+      unitPrice:6.9,
+      originalPrice:0
+    }]
+  }
 }

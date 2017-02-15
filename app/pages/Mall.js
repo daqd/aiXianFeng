@@ -7,11 +7,14 @@ import {
   ListView,
   StyleSheet,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native'
 import Header from '../components/Header'
 import px2dp from '../util'
 import data from '../data'
+import Icon from 'react-native-vector-icons/Ionicons'
+
 const { width, height } = Dimensions.get('window')
 export default class Mall extends Component{
   constructor(props){
@@ -19,7 +22,7 @@ export default class Mall extends Component{
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
     dataSource: ds.cloneWithRows(data.category),
-    hot: ds.cloneWithRows(data.hot)
+    hot: ds.cloneWithRows(data.supermarket.hot)
 };
   }
 
@@ -66,11 +69,26 @@ export default class Mall extends Component{
   _selectCategoryItem(rowID){
     console.log(rowID);
   }
-
+  /***
+  *渲染分类商品内容
+  **/
   _renderCategoryRow(rowData){
     return(
       <View style={styles.shopItem}>
-        {rowData}
+        <View style={styles.shopItemImg}>
+          <Image
+            source={rowData.img}
+            style={{width:70,height:70}}
+          />
+        </View>
+        <View style={styles.shopItemInfo}>
+          <View style={styles.shopItemInfoItem}><Text>{rowData.name}</Text></View>
+          <View style={styles.shopItemInfoItem}><Text style={{color:'#999',fontSize:13}}>{rowData.standard}</Text></View>
+          <View style={styles.shopItemInfoItem}><Text style={{color:'#ff3800'}}>￥{rowData.unitPrice}</Text></View>
+          <View style={styles.addToCart}>
+            <Icon name={'ios-add-circle-outline'} size={px2dp(28)} color="#c9c9c9"/>
+          </View>
+        </View>
       </View>
     )
   }
@@ -113,11 +131,41 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:'center',
   },
+  categoryContent:{
+    backgroundColor:'#FFF',
+  },
   shopItem:{
-    width:width-100,
+    width:width-110,
     height:90,
+    marginLeft:10,
     borderBottomWidth:1,
     backgroundColor:'#FFF',
     borderBottomColor:'#e0e0e0',
+    justifyContent:'center',
+    alignItems:'center',
+    flexDirection:'row'
+  },
+  shopItemImg:{
+    width:70,
+    height:70,
+    overflow:'hidden',
+  },
+  shopItemInfo:{
+    width:width-210,
+    height:70,
+    position:'relative',
+    alignItems:'flex-start',
+    justifyContent:'center',
+    marginLeft:10
+  },
+  shopItemInfoItem:{
+    flex:1,
+  },
+  addToCart:{
+    position:'absolute',
+    right:0,
+    bottom:0,
+    width:30,
+    height:30,
   }
 })
