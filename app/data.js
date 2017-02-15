@@ -45,7 +45,7 @@ export default{
       unitPrice:35,
       originalPrice:50
     },{
-      name:'爱鲜蜂打火机',
+      name:'爱鲜蜂·打火机',
       img:require('./images/supermarket/hot/dahuoji.jpg'),
       standard:'1个',
       unitPrice:2,
