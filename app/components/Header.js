@@ -16,10 +16,12 @@ export default class Header extends Component{
       <View style={styles.header}>
         <View style={styles.topLeftRightItem}></View>
         <View style={styles.topCenterText}>
-          <Text style={{justifyContent:'center'}}>
+          <Text style={{justifyContent:'center',alignItems:'center',marginRight:3}}>
             方家村附近
-            <Icon name={'md-arrow-dropdown'} size={px2dp(25)} color="#000000"/>
           </Text>
+          <View style={{position:'relative',top:2}}>
+            <Icon name={'md-arrow-dropdown'} size={px2dp(25)} color="#000000"/>
+          </View>
         </View>
         <View style={styles.topLeftRightItem}>
           <Icon name={'ios-search-outline'} size={px2dp(22)} color="#000000"/>
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: "#FFF",
     height: headH,
-    paddingTop: px2dp(isIOS?30:10),
+    paddingTop: px2dp(isIOS?20:0),
     flexDirection:'row',
     alignItems:'flex-start',
     justifyContent:'flex-start',
@@ -42,15 +44,16 @@ const styles = StyleSheet.create({
   },
   topLeftRightItem:{
     width:50,
-    height:headH-30,
+    height:isIOS?headH-20:headH,
     flexDirection:'column',
     justifyContent:'center',
     alignItems:'center',
   },
   topCenterText:{
     flex:1,
-    height:headH-30,
+    height:isIOS?headH-20:headH,
+    flexDirection:'row',
     alignItems:'center',
-    justifyContent:'center'
+    justifyContent:'center',
   }
 })
