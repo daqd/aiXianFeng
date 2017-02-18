@@ -26,8 +26,8 @@ export default class Navigation extends Component{
         ):(
           <View style={{flex: 1}}>
             <StatusBar
-             backgroundColor="#0398ff"
-             barStyle="light-content"
+             backgroundColor="#ffd600"
+             barStyle="default"
            />
             <Navigator
               initialRoute={{component: Wrapper}}

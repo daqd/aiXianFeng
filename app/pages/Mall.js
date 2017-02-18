@@ -8,12 +8,16 @@ import {
   StyleSheet,
   Dimensions,
   TouchableOpacity,
-  Image
+  Image,
+  Platform
 } from 'react-native'
 import Header from '../components/Header'
 import px2dp from '../util'
 import data from '../data'
 import Icon from 'react-native-vector-icons/Ionicons'
+
+const isIOS = Platform.OS == "ios"
+const headH = px2dp(isIOS?70:50)
 
 const { width, height } = Dimensions.get('window')
 export default class Mall extends Component{
@@ -56,13 +60,11 @@ export default class Mall extends Component{
 
   _renderRow(rowData){
     return(
-      <TouchableOpacity onPress={this._selectCategoryItem}>
         <View style={styles.categoryItem}>
           <Text style={{color:'#7d7d7d'}}>
             {rowData}
           </Text>
         </View>
-      </TouchableOpacity>
     )
   }
 
@@ -103,6 +105,7 @@ const styles = StyleSheet.create({
   },
   mallContent:{
     width:width,
+    height:height-px2dp(64)-(isIOS?headH-20:headH),
     flexDirection:'row'
   },
   categoryItem:{
